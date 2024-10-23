@@ -124,16 +124,18 @@
 //   }
 // }
 
+import 'package:basiccubit/bloc/auth/auth_bloc.dart';
 import 'package:basiccubit/bloc/bilangan_prima/bilangan_primer_cubit.dart';
 
 import 'package:basiccubit/bloc/ganjil_genap/ganjil_genap_cubit.dart';
+import 'package:basiccubit/pages/login_smart_building.dart';
+import 'package:basiccubit/pages/smart-building.dart';
 import 'package:basiccubit/visibility_cubit.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'counter_cubit.dart';
-import 'counter_page.dart';
 
 void main() => runApp(const CounterApp());
 
@@ -143,6 +145,7 @@ class CounterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -157,8 +160,11 @@ class CounterApp extends StatelessWidget {
           BlocProvider(
             create: (context) => BilanganPrimerCubit(),
           ),
+          BlocProvider(
+            create: (context) => AuthBloc(),
+          ),
         ],
-        child: const CounterPage(),
+        child: LoginPageSmart(),
       ),
     );
   }
